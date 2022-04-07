@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Sign Up Page{% endblock title %}
+
+{% block content %}
+
+<div class="text-center my-5">
+    <h1>QuantifiedSelf</h1>
+    <p>Track and Measure Yourself</p>
+</div>
+
+<form method="POST" action="/sign_up">
+    <h3 align="center">Sign Up </h3>
+    <div class="form-group">
+        <label for="name">Enter Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Name" required/>
+    </div>
+    <div class="form-group">
+        <label for="email">Enter an Email Address</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required/>
+    </div>
+    <div class="form-group">
+        <label for="password1">Enter Password</label>
+        <input type="password" class="form-control" id="password1" name="password1" placeholder="Password" required/>
+    </div>
+    <div class="form-group">
+        <label for="password2">Confirm Password</label>
+        <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" required/>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <br>
+    <div align="center">
+    <h6> <span> Already have an account. <a href="/login">Login Now!</a> </span> </h6>
+    </div>
+</form>
+{% endblock content %}

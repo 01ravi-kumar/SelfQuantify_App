@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock title %}
+{% block content %}
+
+<div class="my-5 text-center">
+        <h1>Tracker List</h1>
+    </div>
+    <div class="container-fluid">
+        {% if tracker %}
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Tracker</th>
+                        <th scope="col">Last Tracked</th>
+                        <th scope="col">Log</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                {% for ind in range(tracker|length) %}
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="/tracker/{{tracker[ind]['tracker_id']}}/details">
+                                <button type="button" class="btn btn-info">
+                                    {{tracker[ind]["name"]}}
+                                </button>
+                            </a>
+                        </td>
+                        <td>{{last_track[ind]}}</td>
+                        <td>
+                             <a href="/tracker/{{tracker[ind]['tracker_id']}}/add" type="button">
+                            <button type="button" class="btn btn-secondary">Add</button>
+                        </a>
+                        </td>
+                        <td>
+                            <a href="/tracker/{{tracker[ind]['tracker_id']}}/edit" type="button">
+                                <button type="button" class="btn btn-success">Edit</button>
+                            </a>
+                            <a href="/tracker/{{tracker[ind]['tracker_id']}}/delete" type="button">
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        {% else %}
+            No Tracker found. Add a tracker now!
+        {% endif %}
+    </div>
+    <div class="my-5" align="center">
+    <a href="/tracker/create"  type="button">
+        <button type="button" class="btn btn-primary">Create Tracker</button>
+    </a>
+</div>
+
+{% endblock content %}

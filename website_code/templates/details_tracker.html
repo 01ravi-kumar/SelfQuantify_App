@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Tracker details{% endblock title %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-7">
+        <div class="my-5">
+            <h3>{{tracker['name']}} - Tracker</h3>
+        </div>
+
+        <div>
+            <img src={{plot}}>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="my-5">
+            <h3>Logs</h3>
+        </div>
+        <div class="container-fluid">
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">Note</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in log %}
+                        <tr>
+                            <td>{{data['time']}}</td>
+                            <td>{{data['log_track']}}</td>
+                            <td>{{data['note']}}</td>
+                            <td>
+                                <a href="/log/{{tracker['tracker_id']}}/{{data['log_id']}}/edit" type="button">
+                                    <button type="button" class="btn btn-success">Edit</button>
+                                </a>
+                                <a href="/log/{{tracker['tracker_id']}}/{{data['log_id']}}/delete" type="button">
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

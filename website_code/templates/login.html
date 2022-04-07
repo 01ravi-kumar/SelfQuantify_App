@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Login Page{% endblock title %}
+
+{% block content %}
+
+<div class="text-center my-5">
+    <h1>QuantifiedSelf</h1>
+    <p>Track and Measure Yourself</p>
+</div>
+
+<form method="POST" action="/login">
+    <h3 align="center">Login </h3>
+    <div class="form-group">
+        <label for="login_email">Enter an Email Address</label>
+        <input type="email" class="form-control" id="login_email" name="login_email" placeholder="Email" required/>
+    </div>
+    <div class="form-group">
+        <label for="login_password">Enter Password</label>
+        <input type="password" class="form-control" id="login_password" name="login_password" placeholder="Password" required/>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <br>
+    <div align="center">
+    <h6> <span> Don't have an account <a href="/sign_up">Sign Up</a> </span> </h6>
+    </div>
+</form>
+
+
+{% endblock content %}
+

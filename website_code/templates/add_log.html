@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Add log{% endblock title %}
+
+{% block content %}
+
+<div class="text-center my-5">
+    <h3>Log {{tracker['name']}}</h3>
+</div>
+<form method="POST" action="/tracker/{{tracker['tracker_id']}}/add">
+    <div class="form-group">
+        <label for="time">Time</label>
+        <input type="datetime-local" class="form-control" id="time" name="time" value={{current_time}}  required/>
+    </div>
+    <div class="form-group">
+
+        {% if tracker['type']=="numerical" %}
+            <label>Value</label>
+            <input type="number" class="form-control" name="val" required/>
+        {% elif tracker['type']=='time_duration' %}
+            <label>Value</label>
+            <input type="time" class="form-control" name="val" required/>
+        {% elif tracker['type']=='multiple_choice' %}
+            <label>Value</label>
+            <select name="val" class="form-control" required>
+                {% for ch in tracker['setting'] %}
+                    <option value="{{ch}}">{{ch}}</option>
+                {% endfor %}
+            </select>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="note">Note</label>
+        <input type="text" class="form-control" id="note" name="note" placeholder="Enter details here."/>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Log it</button>
+    <br>
+
+</form>
+
+{% endblock content %}

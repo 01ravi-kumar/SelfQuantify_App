@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Edit Log{% endblock title %}
+
+{% block content %}
+
+
+<div class="my-5 text-center">
+    <h3>Edit {{tracker['name']}} Log</h3>
+</div>
+<form method="POST" action="/log/{{tracker['tracker_id']}}/{{log_data['log_id']}}/edit">
+        <div class="form-group">
+                <label for="time">Time</label>
+                <input type="datetime-local" class="form-control" id="time" name="time" value={{log_data['time']}} required>
+        </div>
+
+        <div class="form-group">
+
+        {% if tracker['type']=="numerical" %}
+            <label>Value</label>
+            <input type="number" class="form-control" name="val" value={{log_data['log_track']}} required/>
+        {% elif tracker['type']=='time_duration' %}
+            <label>Value</label>
+            <input type="time" class="form-control" name="val" value={{log_data['log_track']}} required/>
+        {% elif tracker['type']=='multiple_choice' %}
+            <label>Value</label>
+            <select name="val" class="form-control" required>
+                <option value="{{log_data['log_track']}}">{{log_data['log_track']}}</option>
+                {% for ch in tracker['setting'] %}
+                    {% if ch != log_data['log_track'] %}
+                        <option value="{{ch}}">{{ch}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        {% endif %}
+        </div>
+
+        <div class="form-group">
+                <label for="note">Note</label>
+                <input type="text" class="form-control" id="note" name="note" value="{{log_data['note']}}">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <br>
+</form>
+
+{% endblock content %}
